@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Village Gallery - Gram Seva</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        .gallery-hero {
+            background: linear-gradient(135deg, #0f4c2a 0%, #1B7A4A 50%, #0D9488 100%);
+            padding: 80px 20px 60px;
+            text-align: center;
+            color: white;
+            border-radius: 0 0 50px 50px;
+            margin-bottom: 50px;
+        }
+        .gallery-hero h1 { color: white; font-size: 3rem; font-weight: 800; margin-bottom: 12px; }
+        .gallery-hero p { opacity: 0.88; font-size: 1.1rem; max-width: 500px; margin: 0 auto; }
+
+        /* Filter Tabs */
+        .filter-tabs {
+            display: flex; gap: 10px; justify-content: center;
+            flex-wrap: wrap; margin-bottom: 40px;
+        }
+        .filter-tab {
+            padding: 8px 22px; border-radius: 50px; border: 2px solid var(--border-color);
+            background: white; color: var(--text-muted); font-weight: 600;
+            cursor: pointer; transition: all 0.3s ease; font-size: 0.9rem;
+        }
+        .filter-tab.active, .filter-tab:hover {
+            background: linear-gradient(135deg, #1B7A4A, #0D9488);
+            color: white; border-color: transparent;
+            box-shadow: 0 6px 20px rgba(27,122,74,0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Horizontal 3-column Grid */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+        @media(max-width: 900px) { .gallery-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media(max-width: 550px) { .gallery-grid { grid-template-columns: 1fr; } }
+
+        .gallery-item {
+            border-radius: 18px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s;
+            aspect-ratio: 16 / 9; /* Force landscape */
+        }
+        .gallery-item:hover {
+            transform: translateY(-6px) scale(1.01);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+        }
+        .gallery-item img {
+            width: 100%; height: 100%;
+            object-fit: cover; object-position: center;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+        .gallery-item:hover img { transform: scale(1.05); }
+
+        .gallery-overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(to top, rgba(15,76,42,0.85) 0%, transparent 60%);
+            opacity: 0; transition: opacity 0.4s ease;
+            display: flex; align-items: flex-end; padding: 20px;
+        }
+        .gallery-item:hover .gallery-overlay { opacity: 1; }
+        .gallery-overlay-text { color: white; }
+        .gallery-overlay-text h4 { font-size: 1rem; font-weight: 700; color: white; margin: 0 0 4px; }
+        .gallery-overlay-text p { font-size: 0.82rem; opacity: 0.85; margin: 0; }
+
+        /* Lightbox */
+        .lightbox {
+            display: none; position: fixed; inset: 0;
+            background: rgba(0,0,0,0.92); z-index: 9999;
+            align-items: center; justify-content: center;
+            padding: 20px;
+        }
+        .lightbox.active { display: flex; }
+        .lightbox-inner {
+            position: relative; max-width: 900px; width: 100%;
+            animation: fadeInUp 0.4s ease;
+        }
+        .lightbox-inner img {
+            width: 100%; border-radius: 20px;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+        }
+        .lightbox-close {
+            position: absolute; top: -16px; right: -16px;
+            width: 40px; height: 40px; border-radius: 50%;
+            background: white; border: none; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.2rem; color: #333;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            transition: transform 0.3s;
+        }
+        .lightbox-close:hover { transform: rotate(90deg) scale(1.1); }
+        .lightbox-caption {
+            text-align: center; color: white;
+            margin-top: 16px; font-size: 1rem; font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="logo.png" alt="Gram Seva Logo"> Gram Seva
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="village-info.html">Village Info</a></li>
+                <li><a href="gallery.html" class="active">Gallery</a></li>
+                <li><a href="complaint.html">Complaints</a></li>
+                <li><a href="schemes.html">Schemes</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="emergency.html">Emergency</a></li>
+            </ul>
+            <button class="menu-toggle" id="menuToggle"><i data-lucide="menu"></i></button>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <div class="gallery-hero">
+        <h1>📸 Village Gallery</h1>
+        <p>A glimpse into the beauty, culture and everyday life of Kaithi village.</p>
+    </div>
+
+    <!-- Main -->
+    <main class="container" style="margin-bottom: 80px;">
+
+        <!-- Filter Tabs -->
+        <div class="filter-tabs">
+            <button class="filter-tab active" data-filter="all">All Photos</button>
+            <button class="filter-tab" data-filter="nature">Nature</button>
+            <button class="filter-tab" data-filter="culture">Culture &amp; Temple</button>
+            <button class="filter-tab" data-filter="life">Village Life</button>
+            <button class="filter-tab" data-filter="development">Development</button>
+        </div>
+
+        <!-- Masonry Grid -->
+        <div class="gallery-grid" id="galleryGrid">
+
+            <div class="gallery-item animate-on-scroll" data-category="nature" onclick="openLightbox(this)">
+                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Village Fields">
+                <div class="gallery-overlay">
+                    <div class="gallery-overlay-text">
+                        <h4>Green Fields of Kaithi</h4>
+                        <p>Nature &bull; Village Outskirts</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-item animate-on-scroll" data-category="life" onclick="openLightbox(this)">
+                <img src="https://images.unsplash.com/photo-1625835698485-6184a56a73c1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Village Houses">
+                <div class="gallery-overlay">
+                    <div class="gallery-overlay-text">
+                        <h4>Village Homes</h4>
+                        <p>Village Life &bull; Ward 2</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-item animate-on-scroll" data-category="culture" onclick="openLightbox(this)">
+                <img src="https://images.unsplash.com/photo-1582510003544-4d00b7f74220?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Temple">
+                <div class="gallery-overlay">
+                    <div class="gallery-overlay-text">
+                        <h4>Village Temple</h4>
+                        <p>Culture &bull; Heart of Kaithi</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-item animate-on-scroll" data-category="nature" onclick="openLightbox(this)">
+                <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Sunrise">
+                <div class="gallery-overlay">
+                    <div class="gallery-overlay-text">
+                        <h4>Morning Sunrise</h4>
+                        <p>Nature &bull; Eastern Fields</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-item animate-on-scroll" data-category="development" onclick="openLightbox(this)">
+                <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Road">
+                <div class="gallery-overlay">
+                    <div class="gallery-overlay-text">
+                        <h4>New Village Road</h4>
+                        <p>Development &bull; Main Road</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-item animate-on-scroll" data-category="life" onclick="openLightbox(this)">
+                <img src="https://images.unsplash.com/photo-1610216705422-caa3fcb6d158?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Market">
+                <div class="gallery-overlay">
+                    <div class="gallery-overlay-text">
+                        <h4>Local Market Day</h4>
+                        <p>Village Life &bull; Weekly Haat</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-item animate-on-scroll" data-category="nature" onclick="openLightbox(this)">
+                <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Forest">
+                <div class="gallery-overlay">
+                    <div class="gallery-overlay-text">
+                        <h4>Village Greenery</h4>
+                        <p>Nature &bull; Tree Line</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-item animate-on-scroll" data-category="culture" onclick="openLightbox(this)">
+                <img src="https://images.unsplash.com/photo-1608306448197-e83633f1261c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Festival">
+                <div class="gallery-overlay">
+                    <div class="gallery-overlay-text">
+                        <h4>Village Festival</h4>
+                        <p>Culture &bull; Annual Mela</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-item animate-on-scroll" data-category="development" onclick="openLightbox(this)">
+                <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Solar">
+                <div class="gallery-overlay">
+                    <div class="gallery-overlay-text">
+                        <h4>Solar Street Lights</h4>
+                        <p>Development &bull; Main Road</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+        <div class="lightbox-inner">
+            <button class="lightbox-close" onclick="closeLightbox()"><i data-lucide="x"></i></button>
+            <img id="lightboxImg" src="" alt="">
+            <div class="lightbox-caption" id="lightboxCaption"></div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <h3><i data-lucide="leaf"></i> Gram Seva</h3>
+                <p>Empowering rural communities through digital governance.</p>
+            </div>
+        </div>
+        <div class="footer-bottom"><p>&copy; 2026 Gram Seva. Designed for Rural India.</p></div>
+    </footer>
+
+    <script>lucide.createIcons();</script>
+    <script src="app.js"></script>
+    <script>
+        // Filter tabs
+        document.querySelectorAll('.filter-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                const filter = tab.dataset.filter;
+                document.querySelectorAll('.gallery-item').forEach(item => {
+                    const match = filter === 'all' || item.dataset.category === filter;
+                    item.style.opacity = match ? '1' : '0.2';
+                    item.style.transform = match ? '' : 'scale(0.95)';
+                    item.style.pointerEvents = match ? 'all' : 'none';
+                    item.style.transition = 'all 0.4s ease';
+                });
+            });
+        });
+
+        // Lightbox
+        function openLightbox(el) {
+            const img = el.querySelector('img');
+            const caption = el.querySelector('h4').textContent + ' — ' + el.querySelector('p').textContent;
+            document.getElementById('lightboxImg').src = img.src;
+            document.getElementById('lightboxCaption').textContent = caption;
+            document.getElementById('lightbox').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeLightbox(e) {
+            if (!e || e.target.id === 'lightbox' || e.target.closest('.lightbox-close')) {
+                document.getElementById('lightbox').classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+        document.addEventListener('keydown', e => { if(e.key === 'Escape') closeLightbox(); });
+    </script>
+</body>
+</html>

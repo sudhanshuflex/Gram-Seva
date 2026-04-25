@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gram Seva - Digital Village Access</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Include Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="logo.png" alt="Gram Seva Logo"> Gram Seva
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html" class="active" data-lang-key="nav-home">Home</a></li>
+                <li><a href="village-info.html" data-lang-key="nav-village">Village Info</a></li>
+                <li><a href="gallery.html" data-lang-key="nav-gallery">Gallery</a></li>
+                <li><a href="complaint.html" data-lang-key="nav-complaints">Complaints</a></li>
+                <li><a href="schemes.html" data-lang-key="nav-schemes">Schemes</a></li>
+                <li><a href="dashboard.html" data-lang-key="nav-dashboard">Dashboard</a></li>
+                <li><a href="emergency.html" data-lang-key="nav-emergency">Emergency</a></li>
+            </ul>
+            <button class="menu-toggle" id="menuToggle">
+                <i data-lucide="menu"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1 data-lang-key="hero-title">Welcome to Gram Seva</h1>
+            <p data-lang-key="hero-sub">Your digital gateway to information, services, and a better village life. Access resources and manage
+                complaints with ease.</p>
+            <div class="hero-buttons">
+                <a href="complaint.html" class="btn btn-primary"><i data-lucide="alert-circle"></i> <span data-lang-key="btn-raise">Raise Complaint</span></a>
+                <a href="schemes.html" class="btn btn-secondary"><i data-lucide="file-text"></i> <span data-lang-key="btn-schemes">Services &amp; Schemes</span></a>
+                <a href="#announcements" class="btn btn-primary" style="background: rgba(255,255,255,0.2);"><i
+                        data-lucide="bell"></i> <span data-lang-key="btn-announce">Announcements</span></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Quick Stats -->
+        <section class="animate-on-scroll" style="margin-bottom: 60px; margin-top: -30px; text-align: center; position: relative; z-index: 10;">
+            <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 24px;">
+                <div style="background: linear-gradient(135deg,#1B7A4A,#0D9488); color:white; padding: 28px 45px; border-radius: 20px; box-shadow: 0 12px 35px rgba(27,122,74,0.35); flex: 1; min-width: 180px;">
+                    <h2 style="color:white; font-size: 2.8rem; margin: 0; font-weight:800;">1,200</h2>
+                    <p style="font-weight: 600; margin:0; opacity:0.9;">Households</p>
+                </div>
+                <div style="background: linear-gradient(135deg,#F5A623,#EA580C); color:white; padding: 28px 45px; border-radius: 20px; box-shadow: 0 12px 35px rgba(245,166,35,0.35); flex: 1; min-width: 180px;">
+                    <h2 style="color:white; font-size: 2.8rem; margin: 0; font-weight:800;">250</h2>
+                    <p style="font-weight: 600; margin:0; opacity:0.9;">Houses</p>
+                </div>
+                <div style="background: linear-gradient(135deg,#7C3AED,#DB2777); color:white; padding: 28px 45px; border-radius: 20px; box-shadow: 0 12px 35px rgba(124,58,237,0.3); flex: 1; min-width: 180px;">
+                    <h2 style="color:white; font-size: 2.8rem; margin: 0; font-weight:800;">200+</h2>
+                    <p style="font-weight: 600; margin:0; opacity:0.9;">Years History</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Snippet -->
+        <section style="margin-bottom:30px;position:relative;overflow:hidden;">
+            <div style="display:flex;gap:50px;align-items:center;flex-wrap:wrap;">
+                <div class="animate-on-scroll slide-left" style="flex:1;min-width:280px;">
+                    <div style="display:inline-block;background:linear-gradient(135deg,#d1fae5,#a7f3d0);color:#065f46;font-weight:700;font-size:0.8rem;letter-spacing:2px;padding:6px 16px;border-radius:30px;margin-bottom:16px;">&#127807; ABOUT KAITHI</div>
+                    <h2 style="font-size:2.6rem;font-weight:800;line-height:1.2;margin-bottom:18px;color:var(--text-dark);">A Village Full of<br><span style="color:var(--primary-green);">Life &amp; Heritage</span></h2>
+                    <p style="font-size:1.05rem;color:var(--text-muted);margin-bottom:24px;line-height:1.8;">Kaithi is a beautiful village with around 250 houses and 1200 households living freely in fresh air and moving towards advancement, holding a history of approx 200 years, containing different viewable areas, a beautiful temple and lots of greenery.</p>
+                    <div style="display:flex;gap:20px;margin-bottom:28px;flex-wrap:wrap;">
+                        <div style="display:flex;align-items:center;gap:8px;font-size:0.9rem;font-weight:600;color:var(--primary-green);"><i data-lucide="tree-pine" style="width:18px;height:18px;"></i> Rich Greenery</div>
+                        <div style="display:flex;align-items:center;gap:8px;font-size:0.9rem;font-weight:600;color:var(--secondary-brown);"><i data-lucide="landmark" style="width:18px;height:18px;"></i> Ancient Temple</div>
+                        <div style="display:flex;align-items:center;gap:8px;font-size:0.9rem;font-weight:600;color:#7C3AED;"><i data-lucide="wind" style="width:18px;height:18px;"></i> Fresh Air</div>
+                    </div>
+                    <a href="village-info.html" class="btn btn-secondary"><i data-lucide="book-open"></i> Read Full History</a>
+                </div>
+                <div class="animate-on-scroll slide-right" style="flex:1;min-width:280px;position:relative;">
+                    <div style="position:absolute;top:-20px;right:-20px;width:120px;height:120px;background:linear-gradient(135deg,#d1fae5,#6ee7b7);border-radius:50%;opacity:0.5;z-index:0;"></div>
+                    <div style="position:absolute;bottom:-15px;left:-15px;width:80px;height:80px;background:linear-gradient(135deg,#fde68a,#fbbf24);border-radius:50%;opacity:0.5;z-index:0;"></div>
+                    <img src="village.jpg" onerror="this.src='https://images.unsplash.com/photo-1625835698485-6184a56a73c1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'" alt="Kaithi Village" style="width:100%;border-radius:24px;box-shadow:0 20px 60px rgba(27,122,74,0.25);position:relative;z-index:1;">
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Features -->
+        <h2 class="section-title">Digital Services</h2>
+        <div class="card-grid">
+            <div class="card text-center">
+                <div class="card-icon mx-auto"><i data-lucide="info"></i></div>
+                <h3>Village Info</h3>
+                <p class="mb-4">Learn about our history, culture, schools, and local markets.</p>
+                <a href="village-info.html" class="btn btn-primary">Explore</a>
+            </div>
+            <div class="card text-center">
+                <div class="card-icon mx-auto"><i data-lucide="message-square"></i></div>
+                <h3>Complaints</h3>
+                <p class="mb-4">Report issues with water, electricity, or roads quickly and easily.</p>
+                <a href="complaint.html" class="btn btn-primary">Report Issue</a>
+            </div>
+            <div class="card text-center">
+                <div class="card-icon mx-auto"><i data-lucide="award"></i></div>
+                <h3>Schemes</h3>
+                <p class="mb-4">Check eligibility and apply for active government schemes.</p>
+                <a href="schemes.html" class="btn btn-primary">View Schemes</a>
+            </div>
+        </div>
+
+        <!-- Announcements Section -->
+        <section id="announcements" class="mt-4" style="margin-top: 60px;">
+            <h2 class="section-title">Latest Announcements</h2>
+            <div class="card-grid">
+                <div class="card">
+                    <h4 style="color: var(--secondary-brown);"><i data-lucide="calendar"></i> Panchayat Meeting</h4>
+                    <p>A general Gram Sabha meeting is scheduled for this Sunday at the Panchayat Bhawan.</p>
+                    <small class="text-muted">Posted: 2 days ago</small>
+                </div>
+                <div class="card" style="border-left: 4px solid var(--danger-red);">
+                    <h4 style="color: var(--danger-red);"><i data-lucide="cloud-rain"></i> Weather Alert</h4>
+                    <p>Heavy rains expected over the next 48 hours. Farmers are advised to secure harvested crops.</p>
+                    <small class="text-muted">Posted: Today</small>
+                </div>
+                <div class="card">
+                    <h4 style="color: var(--secondary-brown);"><i data-lucide="activity"></i> Health Camp</h4>
+                    <p>Free eye check-up camp at the Primary Health Center next Wednesday.</p>
+                    <small class="text-muted">Posted: 1 week ago</small>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recent Resolutions -->
+        <section class="animate-on-scroll" style="margin-top: 80px; margin-bottom: 60px;">
+            <h2 class="section-title">Recent Resolutions</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                <div
+                    style="background: var(--light-yellow); padding: 25px; border-radius: var(--border-radius); border-left: 5px solid var(--primary-green); box-shadow: var(--shadow-sm);">
+                    <h4 style="margin-bottom: 10px; font-size: 1.2rem;"><i data-lucide="check-circle"
+                            style="color: var(--primary-green); vertical-align: middle; margin-right: 5px;"></i> Road
+                        Repair in Ward 4</h4>
+                    <p class="text-muted" style="margin: 0;">The long-standing issue of potholes near the primary school
+                        has been successfully resolved by the PWD team.</p>
+                </div>
+                <div
+                    style="background: var(--light-yellow); padding: 25px; border-radius: var(--border-radius); border-left: 5px solid var(--primary-green); box-shadow: var(--shadow-sm);">
+                    <h4 style="margin-bottom: 10px; font-size: 1.2rem;"><i data-lucide="check-circle"
+                            style="color: var(--primary-green); vertical-align: middle; margin-right: 5px;"></i> Solar
+                        Street Lights</h4>
+                    <p class="text-muted" style="margin: 0;">Installed 25 new solar street lights along the main village
+                        road to improve safety and visibility at night.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- AI Chat Widget -->
+    <div class="ai-chat-widget">
+        <button class="chat-toggle" id="chatToggle">
+            <i data-lucide="bot"></i>
+        </button>
+        <div class="chat-window" id="chatWindow">
+            <div class="chat-header">
+                Gram Seva Assistant
+                <button class="close-chat" id="closeChat"><i data-lucide="x"></i></button>
+            </div>
+            <div class="chat-body" id="chatBody">
+                <div class="message bot">Namaste! I am your Gram Seva Assistant. How can I help you today?</div>
+            </div>
+            <form class="chat-input" id="chatForm">
+                <input type="text" id="chatInput" placeholder="Type a message or use Hindi...">
+                <button type="submit"><i data-lucide="send"></i></button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <h3><i data-lucide="leaf"></i> Gram Seva</h3>
+                <p>Empowering rural communities through digital governance and easy access to services.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="village-info.html">About Village</a></li>
+                    <li><a href="complaint.html">Raise Complaint</a></li>
+                    <li><a href="schemes.html">Govt Schemes</a></li>
+                    <li><a href="tracking.html">Track Status</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Emergency Services</h3>
+                <p class="mb-2"><strong>Ambulance:</strong> 108</p>
+                <p class="mb-2"><strong>Police:</strong> 100</p>
+                <p class="mb-4"><strong>Panchayat:</strong> +91 98765 43210</p>
+                <a href="emergency.html" class="btn btn-danger">Emergency Contacts</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Gram Seva. Designed for Rural India.</p>
+        </div>
+    </footer>
+
+    <!-- Initialize Icons -->
+    <script>
+        lucide.createIcons();
+    </script>
+    <script src="app.js"></script>
+</body>
+
+</html>

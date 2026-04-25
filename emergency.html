@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emergency Contacts - Gram Seva</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        .sos-button {
+            background-color: var(--danger-red);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            font-size: 2rem;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 0 20px rgba(211, 75, 75, 0.5);
+            animation: pulse 2s infinite;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 40px;
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(211, 75, 75, 0.7); }
+            70% { box-shadow: 0 0 0 20px rgba(211, 75, 75, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(211, 75, 75, 0); }
+        }
+        .contact-card {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 20px;
+            background: var(--surface-color);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-sm);
+            border-left: 5px solid var(--primary-green);
+        }
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--light-yellow);
+            color: var(--secondary-brown);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="logo.png" alt="Gram Seva Logo"> Gram Seva
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="village-info.html">Village Info</a></li>
+                <li><a href="complaint.html">Complaints</a></li>
+                <li><a href="schemes.html">Schemes</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="emergency.html" class="active">Emergency</a></li>
+            </ul>
+            <button class="menu-toggle" id="menuToggle">
+                <i data-lucide="menu"></i>
+            </button>
+        </div>
+    </nav>
+
+    <main class="container" style="margin-top: 40px; margin-bottom: 60px;">
+        <h2 class="section-title" style="color: var(--danger-red);">Emergency Help</h2>
+        
+        <!-- SOS Section -->
+        <div class="text-center">
+            <button class="sos-button" id="sosBtn">
+                <i data-lucide="alert-triangle"></i>
+                SOS
+            </button>
+            <p class="text-muted mb-4" id="sosHint">Press <strong>twice</strong> to call emergency number immediately.</p>
+        </div>
+
+        <script>
+            let sosClickCount = 0;
+            let sosTimer = null;
+
+            document.getElementById('sosBtn').addEventListener('click', function () {
+                sosClickCount++;
+
+                if (sosClickCount === 1) {
+                    document.getElementById('sosHint').innerHTML = '<strong style="color:var(--danger-red);">⚠️ Click again to confirm & call!</strong>';
+                    sosTimer = setTimeout(() => {
+                        sosClickCount = 0;
+                        document.getElementById('sosHint').innerHTML = 'Press <strong>twice</strong> to call emergency number immediately.';
+                    }, 3000); // reset after 3s if not clicked again
+                }
+
+                if (sosClickCount === 2) {
+                    clearTimeout(sosTimer);
+                    sosClickCount = 0;
+                    document.getElementById('sosHint').innerHTML = '📞 <strong style="color:var(--primary-green);">Calling 7991893455...</strong>';
+                    window.location.href = 'tel:7991893455';
+                }
+            });
+        </script>
+
+        <!-- Contact List -->
+        <div class="card-grid">
+            <div class="contact-card" style="border-left-color: var(--danger-red);">
+                <div class="contact-icon"><i data-lucide="cross"></i></div>
+                <div>
+                    <h3 style="margin: 0;">Ambulance / Hospital</h3>
+                    <p style="font-size: 1.2rem; font-weight: bold; color: var(--text-dark); margin: 5px 0;">108</p>
+                    <small class="text-muted">Available 24/7</small>
+                </div>
+            </div>
+            
+            <div class="contact-card" style="border-left-color: #004085;">
+                <div class="contact-icon"><i data-lucide="shield"></i></div>
+                <div>
+                    <h3 style="margin: 0;">Police Station</h3>
+                    <p style="font-size: 1.2rem; font-weight: bold; color: var(--text-dark); margin: 5px 0;">100</p>
+                    <small class="text-muted">Local Thana</small>
+                </div>
+            </div>
+
+            <div class="contact-card">
+                <div class="contact-icon"><i data-lucide="users"></i></div>
+                <div>
+                    <h3 style="margin: 0;">Panchayat Head (Sarpanch)</h3>
+                    <p style="font-size: 1.2rem; font-weight: bold; color: var(--text-dark); margin: 5px 0;">+91 98765 43210</p>
+                    <small class="text-muted">Shri Ram Niwas</small>
+                </div>
+            </div>
+
+            <div class="contact-card">
+                <div class="contact-icon"><i data-lucide="flame"></i></div>
+                <div>
+                    <h3 style="margin: 0;">Fire Brigade</h3>
+                    <p style="font-size: 1.2rem; font-weight: bold; color: var(--text-dark); margin: 5px 0;">101</p>
+                    <small class="text-muted">Nearest Fire Station</small>
+                </div>
+            </div>
+            
+            <div class="contact-card">
+                <div class="contact-icon"><i data-lucide="zap"></i></div>
+                <div>
+                    <h3 style="margin: 0;">Electricity Department</h3>
+                    <p style="font-size: 1.2rem; font-weight: bold; color: var(--text-dark); margin: 5px 0;">1912</p>
+                    <small class="text-muted">For power failure/emergencies</small>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <h3><i data-lucide="leaf"></i> Gram Seva</h3>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Gram Seva.</p>
+        </div>
+    </footer>
+
+    <script>lucide.createIcons();</script>
+    <script src="app.js"></script>
+</body>
+</html>

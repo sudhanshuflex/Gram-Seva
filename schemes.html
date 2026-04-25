@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Government Schemes - Gram Seva</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        .scheme-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+        }
+        .scheme-tag {
+            background-color: var(--light-yellow);
+            color: var(--secondary-brown);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        .eligibility-checker {
+            background-color: var(--primary-green);
+            color: white;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            margin-bottom: 40px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="logo.png" alt="Gram Seva Logo"> Gram Seva
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="village-info.html">Village Info</a></li>
+                <li><a href="complaint.html">Complaints</a></li>
+                <li><a href="schemes.html" class="active">Schemes</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><a href="emergency.html">Emergency</a></li>
+            </ul>
+            <button class="menu-toggle" id="menuToggle">
+                <i data-lucide="menu"></i>
+            </button>
+        </div>
+    </nav>
+
+    <main class="container" style="margin-top: 40px; margin-bottom: 60px;">
+        <h2 class="section-title">Government Schemes</h2>
+        
+        <!-- Eligibility Checker -->
+        <div class="eligibility-checker">
+            <h3 style="color: white; margin-bottom: 15px;"><i data-lucide="check-circle"></i> Check Your Eligibility</h3>
+            <p style="margin-bottom: 20px; opacity: 0.9;">Answer a few basic questions to see which schemes you qualify for.</p>
+            <form style="display: flex; gap: 15px; flex-wrap: wrap;">
+                <select class="form-control" style="flex: 1; min-width: 200px;">
+                    <option>Select Occupation</option>
+                    <option>Farmer</option>
+                    <option>Student</option>
+                    <option>Laborer</option>
+                    <option>Other</option>
+                </select>
+                <select class="form-control" style="flex: 1; min-width: 200px;">
+                    <option>Annual Income</option>
+                    <option>Below 1 Lakh</option>
+                    <option>1 - 3 Lakhs</option>
+                    <option>Above 3 Lakhs</option>
+                </select>
+                <button type="button" class="btn btn-secondary" onclick="alert('Based on your profile, you are eligible for PM Kisan and Awas Yojana.')">Find Schemes</button>
+            </form>
+        </div>
+
+        <!-- Scheme List -->
+        <div class="card-grid">
+            <div class="card scheme-card">
+                <div>
+                    <span class="scheme-tag">Agriculture</span>
+                    <h3>PM Kisan Samman Nidhi</h3>
+                    <p class="mb-4">Financial support of ₹6,000 per year for landholding farmer families.</p>
+                </div>
+                <div>
+                    <a href="#" class="btn btn-primary" style="width: 100%;">Apply Now</a>
+                </div>
+            </div>
+            <div class="card scheme-card">
+                <div>
+                    <span class="scheme-tag">Housing</span>
+                    <h3>Pradhan Mantri Awas Yojana</h3>
+                    <p class="mb-4">Financial assistance for building a pucca house in rural areas.</p>
+                </div>
+                <div>
+                    <a href="#" class="btn btn-primary" style="width: 100%;">Apply Now</a>
+                </div>
+            </div>
+            <div class="card scheme-card">
+                <div>
+                    <span class="scheme-tag">Employment</span>
+                    <h3>MGNREGA</h3>
+                    <p class="mb-4">Guarantee of 100 days of wage employment in a financial year.</p>
+                </div>
+                <div>
+                    <a href="#" class="btn btn-primary" style="width: 100%;">Apply Now</a>
+                </div>
+            </div>
+            <div class="card scheme-card">
+                <div>
+                    <span class="scheme-tag">Health</span>
+                    <h3>Ayushman Bharat</h3>
+                    <p class="mb-4">Health cover of ₹5 lakhs per family per year for secondary and tertiary care.</p>
+                </div>
+                <div>
+                    <a href="#" class="btn btn-primary" style="width: 100%;">Apply Now</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <h3><i data-lucide="leaf"></i> Gram Seva</h3>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Gram Seva.</p>
+        </div>
+    </footer>
+
+    <script>lucide.createIcons();</script>
+    <script src="app.js"></script>
+</body>
+</html>
